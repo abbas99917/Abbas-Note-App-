@@ -363,7 +363,7 @@ body {
 
 .note .delete {
     background: rgba(239, 68, 68, 0.12);
-
+    margin-top: 8px;
     color: #f87171;
 }
 
