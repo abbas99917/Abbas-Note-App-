@@ -57,9 +57,6 @@
 
         
     }
-
-  
-
     titleInput.value = "";
     descriptionInput.value = "";
 
@@ -68,26 +65,19 @@
 // date
 // let date = new Date().toLocaleString()
 
-    const displayNotesOnScreen = () => {
-
+const displayNotesOnScreen = (notes = noteArr) => {
 
     notesContainer.innerHTML = "";
-
-    noteArr.forEach((curElem) => {
-
-        console.log("Creating card for:", curElem.id);
-
+    notes.forEach((curElem) => {
         let noteCard = document.createElement("div");
-
         noteCard.classList.add("note");
-
         noteCard.innerHTML = `
             <h2>${curElem.title}</h2>
             <p>${curElem.desc}</p>
-               <div class="date">
-            ${curElem.date}
-          </div>
 
+            <div class="date">
+                ${curElem.date}
+            </div>
 
             <button class="edit" onclick="editNote(${curElem.id})">
                 Edit
@@ -126,5 +116,21 @@
    
 
   }
+
+
+  // search-note
+
+    searchInput.addEventListener("input", () => { 
+
+        let searchValue = searchInput.value .toLowerCase() .trim();
+
+         let filteredNotes = noteArr.filter((curElem) => {
+         return ( curElem.title.toLowerCase().includes(searchValue) || curElem.desc.toLowerCase().includes(searchValue)); 
+
+        });
+         displayNotesOnScreen(filteredNotes);
+    });
+
+
     addBtn.addEventListener("click", showNotes)
     displayNotesOnScreen();
